@@ -12,7 +12,7 @@ class Minesweeper:
         self.mines = set(random.sample(range(width * height), mines))
         self.field = [[' ' for _ in range(width)] for _ in range(height)]
         self.revealed = [[False for _ in range(width)] for _ in range(height)]
-        # ✅ ajout pour gérer la victoire
+        # ✅ nombre de cases sûres
         self.safe_cells = width * height - mines
         self.revealed_count = 0
 
@@ -48,7 +48,7 @@ class Minesweeper:
         if (y * self.width + x) in self.mines:
             return False
         self.revealed[y][x] = True
-        self.revealed_count += 1  # ✅ compte la case révélée
+        self.revealed_count += 1   # ✅ on compte la case sûre révélée
         if self.count_mines_nearby(x, y) == 0:
             for dx in [-1, 0, 1]:
                 for dy in [-1, 0, 1]:
@@ -67,7 +67,7 @@ class Minesweeper:
                     self.print_board(reveal=True)
                     print("Game Over! You hit a mine.")
                     break
-                # ✅ vérification de la victoire
+                # ✅ test de victoire
                 if self.revealed_count == self.safe_cells:
                     self.print_board(reveal=True)
                     print("Congratulations! You've won the game.")
