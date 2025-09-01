@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 import sys
 
+
 def factorial(n):
     """
     Calculate the factorial of a number recursively.
 
-    Parameters:
+    Args:
         n (int): The number for which the factorial is calculated.
                  Must be a non-negative integer.
 
@@ -14,22 +15,21 @@ def factorial(n):
     """
     if n == 0:
         return 1
-    else:
-        return n * factorial(n - 1)
+    return n * factorial(n - 1)
+
 
 if __name__ == "__main__":
-    # Vérifie qu'un argument est passé
+    # Check that an argument was provided
     if len(sys.argv) < 2:
         print("Usage: ./factorial_recursive.py <number>")
         sys.exit(1)
 
-    # Convertit l’argument en entier et calcule le factoriel
     try:
         num = int(sys.argv[1])
         if num < 0:
-            print("Erreur: le factoriel n’est pas défini pour les nombres négatifs.")
+            print("Error: factorial is not defined for negative numbers.")
             sys.exit(1)
-        f = factorial(num)
-        print(f)
+        result = factorial(num)
+        print(result)
     except ValueError:
-        print("Erreur: l’argument doit être un entier.")
+        print("Error: argument must be an integer.")
