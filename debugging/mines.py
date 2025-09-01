@@ -10,10 +10,9 @@ class Minesweeper:
         self.width = width
         self.height = height
         self.mines = set(random.sample(range(width * height), mines))
-        self.field = [[' ' for _ in range(width)] for _ in range(height)]
         self.revealed = [[False for _ in range(width)] for _ in range(height)]
-        self.safe_cells = width * height - mines  # total safe cells to reveal
-        self.revealed_count = 0  # track revealed safe cells
+        self.safe_cells = width * height - mines
+        self.revealed_count = 0
 
     def print_board(self, reveal=False):
         clear_screen()
@@ -43,7 +42,7 @@ class Minesweeper:
 
     def reveal(self, x, y):
         if self.revealed[y][x]:
-            return True  # already revealed, ignore
+            return True
         if (y * self.width + x) in self.mines:
             return False
         self.revealed[y][x] = True
